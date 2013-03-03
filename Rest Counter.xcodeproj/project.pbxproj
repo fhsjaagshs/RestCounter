@@ -1,0 +1,338 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9B88A773151D4FC8006B2B54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B88A772151D4FC8006B2B54 /* UIKit.framework */; };
+		9B88A776151D4FD0006B2B54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B88A775151D4FD0006B2B54 /* Foundation.framework */; };
+		9B88A778151D4FD5006B2B54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B88A777151D4FD5006B2B54 /* CoreGraphics.framework */; };
+		F11BB8A414BA74C700FAB475 /* rt~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F11BB8A314BA74C700FAB475 /* rt~ipad.png */; };
+		F11BB8A614BA74CC00FAB475 /* rt.png in Resources */ = {isa = PBXBuildFile; fileRef = F11BB8A514BA74CC00FAB475 /* rt.png */; };
+		F139C03C1686B92C006D7B99 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F139C03B1686B92C006D7B99 /* Default-568h@2x.png */; };
+		F166BD701685EF22005C5113 /* resetbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = F166BD6F1685EF22005C5113 /* resetbutton.png */; };
+		F166BD731685F764005C5113 /* rt~ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F166BD721685F764005C5113 /* rt~ipad@2x.png */; };
+		F1813902168532CB00B694EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1813901168532CB00B694EF /* QuartzCore.framework */; };
+		F186A96D14899AD10054672E /* textfieldbg.png in Resources */ = {isa = PBXBuildFile; fileRef = F186A96C14899AD10054672E /* textfieldbg.png */; };
+		F186A9781489B1500054672E /* segmentedcontrolimage.png in Resources */ = {isa = PBXBuildFile; fileRef = F186A9761489B1500054672E /* segmentedcontrolimage.png */; };
+		F186A9801489BF110054672E /* divider.png in Resources */ = {isa = PBXBuildFile; fileRef = F186A97F1489BF110054672E /* divider.png */; };
+		F1A438CF13FDBFCD00D577BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A438CE13FDBFCD00D577BB /* main.m */; };
+		F1A438D313FDBFCD00D577BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A438D213FDBFCD00D577BB /* AppDelegate.m */; };
+		F1A438D913FDBFCD00D577BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A438D813FDBFCD00D577BB /* ViewController.m */; };
+		F1B3CA7C14BA60B8002E5000 /* rt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1B3CA7B14BA60B8002E5000 /* rt@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9B88A772151D4FC8006B2B54 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9B88A775151D4FD0006B2B54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9B88A777151D4FD5006B2B54 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F11BB8A314BA74C700FAB475 /* rt~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rt~ipad.png"; path = "../rt~ipad.png"; sourceTree = "<group>"; };
+		F11BB8A514BA74CC00FAB475 /* rt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rt.png; path = ../rt.png; sourceTree = "<group>"; };
+		F139C03B1686B92C006D7B99 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		F166BD6F1685EF22005C5113 /* resetbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resetbutton.png; sourceTree = "<group>"; };
+		F166BD721685F764005C5113 /* rt~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rt~ipad@2x.png"; sourceTree = SOURCE_ROOT; };
+		F1813901168532CB00B694EF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F186A96C14899AD10054672E /* textfieldbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfieldbg.png; sourceTree = "<group>"; };
+		F186A9761489B1500054672E /* segmentedcontrolimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentedcontrolimage.png; sourceTree = "<group>"; };
+		F186A97F1489BF110054672E /* divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider.png; sourceTree = "<group>"; };
+		F1A438BE13FDBFCD00D577BB /* Rest Counter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rest Counter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1A438CA13FDBFCD00D577BB /* Rest Counter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rest Counter-Info.plist"; sourceTree = "<group>"; };
+		F1A438CE13FDBFCD00D577BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F1A438D013FDBFCD00D577BB /* Rest Counter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rest Counter-Prefix.pch"; sourceTree = "<group>"; };
+		F1A438D113FDBFCD00D577BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F1A438D213FDBFCD00D577BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F1A438D713FDBFCD00D577BB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F1A438D813FDBFCD00D577BB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F1B3CA7B14BA60B8002E5000 /* rt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rt@2x.png"; path = "../rt@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F1A438BB13FDBFCD00D577BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1813902168532CB00B694EF /* QuartzCore.framework in Frameworks */,
+				9B88A778151D4FD5006B2B54 /* CoreGraphics.framework in Frameworks */,
+				9B88A776151D4FD0006B2B54 /* Foundation.framework in Frameworks */,
+				9B88A773151D4FC8006B2B54 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F166BD6E1685EF17005C5113 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F166BD711685EFFA005C5113 /* Icon */,
+				F166BD6F1685EF22005C5113 /* resetbutton.png */,
+				F186A97F1489BF110054672E /* divider.png */,
+				F186A9761489B1500054672E /* segmentedcontrolimage.png */,
+				F186A96C14899AD10054672E /* textfieldbg.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		F166BD711685EFFA005C5113 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				F139C03B1686B92C006D7B99 /* Default-568h@2x.png */,
+				F166BD721685F764005C5113 /* rt~ipad@2x.png */,
+				F11BB8A514BA74CC00FAB475 /* rt.png */,
+				F1B3CA7B14BA60B8002E5000 /* rt@2x.png */,
+				F11BB8A314BA74C700FAB475 /* rt~ipad.png */,
+			);
+			name = Icon;
+			sourceTree = "<group>";
+		};
+		F1A438B313FDBFCD00D577BB = {
+			isa = PBXGroup;
+			children = (
+				F1A438C813FDBFCD00D577BB /* Rest Counter */,
+				F1A438C113FDBFCD00D577BB /* Frameworks */,
+				F1A438BF13FDBFCD00D577BB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F1A438BF13FDBFCD00D577BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1A438BE13FDBFCD00D577BB /* Rest Counter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F1A438C113FDBFCD00D577BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1813901168532CB00B694EF /* QuartzCore.framework */,
+				9B88A777151D4FD5006B2B54 /* CoreGraphics.framework */,
+				9B88A775151D4FD0006B2B54 /* Foundation.framework */,
+				9B88A772151D4FC8006B2B54 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F1A438C813FDBFCD00D577BB /* Rest Counter */ = {
+			isa = PBXGroup;
+			children = (
+				F166BD6E1685EF17005C5113 /* Images */,
+				F1A438D113FDBFCD00D577BB /* AppDelegate.h */,
+				F1A438D213FDBFCD00D577BB /* AppDelegate.m */,
+				F1A438D713FDBFCD00D577BB /* ViewController.h */,
+				F1A438D813FDBFCD00D577BB /* ViewController.m */,
+				F1A438C913FDBFCD00D577BB /* Supporting Files */,
+			);
+			path = "Rest Counter";
+			sourceTree = "<group>";
+		};
+		F1A438C913FDBFCD00D577BB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1A438CA13FDBFCD00D577BB /* Rest Counter-Info.plist */,
+				F1A438CE13FDBFCD00D577BB /* main.m */,
+				F1A438D013FDBFCD00D577BB /* Rest Counter-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F1A438BD13FDBFCD00D577BB /* Rest Counter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1A438F613FDBFCD00D577BB /* Build configuration list for PBXNativeTarget "Rest Counter" */;
+			buildPhases = (
+				F1A438BA13FDBFCD00D577BB /* Sources */,
+				F1A438BB13FDBFCD00D577BB /* Frameworks */,
+				F1A438BC13FDBFCD00D577BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Rest Counter";
+			productName = "Rest Counter";
+			productReference = F1A438BE13FDBFCD00D577BB /* Rest Counter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F1A438B513FDBFCD00D577BB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = F1A438B813FDBFCD00D577BB /* Build configuration list for PBXProject "Rest Counter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F1A438B313FDBFCD00D577BB;
+			productRefGroup = F1A438BF13FDBFCD00D577BB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F1A438BD13FDBFCD00D577BB /* Rest Counter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F1A438BC13FDBFCD00D577BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F186A96D14899AD10054672E /* textfieldbg.png in Resources */,
+				F186A9781489B1500054672E /* segmentedcontrolimage.png in Resources */,
+				F186A9801489BF110054672E /* divider.png in Resources */,
+				F1B3CA7C14BA60B8002E5000 /* rt@2x.png in Resources */,
+				F11BB8A414BA74C700FAB475 /* rt~ipad.png in Resources */,
+				F11BB8A614BA74CC00FAB475 /* rt.png in Resources */,
+				F166BD701685EF22005C5113 /* resetbutton.png in Resources */,
+				F166BD731685F764005C5113 /* rt~ipad@2x.png in Resources */,
+				F139C03C1686B92C006D7B99 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F1A438BA13FDBFCD00D577BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1A438CF13FDBFCD00D577BB /* main.m in Sources */,
+				F1A438D313FDBFCD00D577BB /* AppDelegate.m in Sources */,
+				F1A438D913FDBFCD00D577BB /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F1A438F413FDBFCD00D577BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Corinna Wiedmer-Symer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A364CD2C-C48A-47B5-A2EC-39935D40B868";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		F1A438F513FDBFCD00D577BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Corinna Wiedmer-Symer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A364CD2C-C48A-47B5-A2EC-39935D40B868";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		F1A438F713FDBFCD00D577BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Rest Counter/Rest Counter-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "Rest Counter/Rest Counter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F1A438F813FDBFCD00D577BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Rest Counter/Rest Counter-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "Rest Counter/Rest Counter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F1A438B813FDBFCD00D577BB /* Build configuration list for PBXProject "Rest Counter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1A438F413FDBFCD00D577BB /* Debug */,
+				F1A438F513FDBFCD00D577BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1A438F613FDBFCD00D577BB /* Build configuration list for PBXNativeTarget "Rest Counter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1A438F713FDBFCD00D577BB /* Debug */,
+				F1A438F813FDBFCD00D577BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F1A438B513FDBFCD00D577BB /* Project object */;
+}
