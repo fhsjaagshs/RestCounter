@@ -12,16 +12,14 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    self.viewController = [[ViewController alloc]init];
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+    self.window = [[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]]autorelease];
+    _window.rootViewController = [[[ViewController alloc]init]autorelease];
+    [_window makeKeyAndVisible];
     return YES;
 }
 
 - (void)dealloc {
     [self setWindow:nil];
-    [self setViewController:nil];
     [super dealloc];
 }
 

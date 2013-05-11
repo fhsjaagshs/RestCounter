@@ -34,11 +34,11 @@ BOOL timerIsValid(dispatch_source_t aTimer) {
 
 @implementation ViewController
 
-@synthesize beatInMeasure, beatsPerMeasure, beatsPerMeasure2, sc, autocount, measures;
-
 - (void)loadView {
     [super loadView];
     [self.view setBackgroundColor:[UIColor blackColor]];
+    
+    BOOL iPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
     
     UIButton *mainButton = [UIButton buttonWithType:UIButtonTypeCustom];
     mainButton.frame = self.view.bounds;
@@ -50,17 +50,12 @@ BOOL timerIsValid(dispatch_source_t aTimer) {
     [self.view addSubview:mainButton];
     [self.view sendSubviewToBack:mainButton];
 
-    UILabel *autocountLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 407+(self.view.bounds.size.height-480), 79, 21)];
+    UILabel *autocountLabel = [[UILabel alloc]initWithFrame:iPad?CGRectMake(13, 932, 79, 21):CGRectMake(10, 407+(self.view.bounds.size.height-480), 79, 21)];
     autocountLabel.text = @"Autocount";
     autocountLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     autocountLabel.textColor = [UIColor whiteColor];
     autocountLabel.backgroundColor = [UIColor clearColor];
     autocountLabel.font = [UIFont systemFontOfSize:17];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        autocountLabel.frame = CGRectMake(13, 932, 79, 21);
-    }
-    
     [self.view addSubview:autocountLabel];
     [self.view bringSubviewToFront:autocountLabel];
     [autocountLabel release];
@@ -70,212 +65,140 @@ BOOL timerIsValid(dispatch_source_t aTimer) {
     beatsBarLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     beatsBarLabel.textColor = [UIColor whiteColor];
     beatsBarLabel.backgroundColor = [UIColor clearColor];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        beatsBarLabel.frame = CGRectMake(43, 11, 168, 44);
-        beatsBarLabel.font = [UIFont boldSystemFontOfSize:26];
-    } else {
-        beatsBarLabel.font = [UIFont boldSystemFontOfSize:17];
-    }
-    
+    beatsBarLabel.font = [UIFont boldSystemFontOfSize:iPad?26:17];
     [self.view addSubview:beatsBarLabel];
     [self.view bringSubviewToFront:beatsBarLabel];
     [beatsBarLabel release];
+
+    self.autocount = [[[UISwitch alloc]initWithFrame:CGRectMake(10, 436+(self.view.bounds.size.height-480), 79, 27)]autorelease];
+    _autocount.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    [_autocount setOn:[[NSUserDefaults standardUserDefaults]boolForKey:@"shouldAutocount"]];
+    [_autocount addTarget:self action:@selector(autocountToggled) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_autocount];
+    [self.view bringSubviewToFront:_autocount];
     
-    UISwitch *aSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(10, 436+(self.view.bounds.size.height-480), 79, 27)];
-    [self setAutocount:aSwitch];
-    [aSwitch release];
-    self.autocount.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
-    [self.autocount setOn:[[NSUserDefaults standardUserDefaults]boolForKey:@"shouldAutocount"]];
-    [self.autocount addTarget:self action:@selector(autocountToggled) forControlEvents:UIControlEventValueChanged];
-    
-    [self.view addSubview:self.autocount];
-    [self.view bringSubviewToFront:self.autocount];
-    
-    UILabel *barNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(140, 13, 39, 21)];
+    UILabel *barNumberLabel = [[UILabel alloc]initWithFrame:iPad?CGRectMake(301, 6, 114, 32):CGRectMake(140, 13, 39, 21)];
     barNumberLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     barNumberLabel.textColor = [UIColor whiteColor];
     barNumberLabel.backgroundColor = [UIColor clearColor];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        barNumberLabel.frame = CGRectMake(301, 6, 114, 32);
-        barNumberLabel.font = [UIFont boldSystemFontOfSize:24];
-        barNumberLabel.text = @"Measure:";
-    } else {
-        barNumberLabel.text = @"Bar:";
-        barNumberLabel.font = [UIFont boldSystemFontOfSize:17];
-    }
-    
+    barNumberLabel.font = [UIFont boldSystemFontOfSize:iPad?24:17];
+    barNumberLabel.text = iPad?@"Measure:":@"Bar:";
     [self.view addSubview:barNumberLabel];
     [self.view bringSubviewToFront:barNumberLabel];
     [barNumberLabel release];
     
-    UILabel *beatNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(192, 48, 52, 21)];
+    UILabel *beatNumberLabel = [[UILabel alloc]initWithFrame:iPad?CGRectMake(301, 46, 73, 36):CGRectMake(192, 48, 52, 21)];
     beatNumberLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     beatNumberLabel.textColor = [UIColor whiteColor];
     beatNumberLabel.backgroundColor = [UIColor clearColor];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        beatNumberLabel.frame = CGRectMake(301, 46, 73, 36);
-        beatNumberLabel.font = [UIFont boldSystemFontOfSize:25];
-    } else {
-        beatNumberLabel.font = [UIFont boldSystemFontOfSize:17];
-        beatNumberLabel.text = @"Beat:";
-    }
-    
+    beatNumberLabel.text = @"Beat:";
+    beatsBarLabel.font = [UIFont boldSystemFontOfSize:iPad?25:17];
     [self.view addSubview:beatNumberLabel];
     [self.view bringSubviewToFront:beatNumberLabel];
     [beatNumberLabel release];
     
     UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
     resetButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    resetButton.frame = CGRectMake(158, 81, 87, 37);
+    resetButton.frame = iPad?CGRectMake(301, 165, 125, 37):CGRectMake(158, 81, 87, 37);
+    resetButton.titleLabel.font = [UIFont boldSystemFontOfSize:iPad?28:23];
     [resetButton setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"resetbutton" ofType:@"png"]] forState:UIControlStateNormal];
     [resetButton setTitle:@"Reset" forState:UIControlStateNormal];
     [resetButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    
     [resetButton addTarget:self action:@selector(resetIt) forControlEvents:UIControlEventTouchUpInside];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        resetButton.frame = CGRectMake(301, 165, 125, 37);
-        resetButton.titleLabel.font = [UIFont boldSystemFontOfSize:28];
-    } else {
-        resetButton.titleLabel.font = [UIFont boldSystemFontOfSize:23];
-    }
-    
     [self.view addSubview:resetButton];
     [self.view bringSubviewToFront:resetButton];
     
-    UITextField *aFirstTextField = [[UITextField alloc]initWithFrame:CGRectMake(18, 26, 42, 42)];
-    [self setBeatsPerMeasure:aFirstTextField];
-    [aFirstTextField release];
-    self.beatsPerMeasure.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    [self.beatsPerMeasure setBackground:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"textfieldbg" ofType:@"png"]]];
-    self.beatsPerMeasure.textAlignment = UITextAlignmentCenter;
-    self.beatsPerMeasure.clearsOnBeginEditing = YES;
-    self.beatsPerMeasure.keyboardAppearance = UIKeyboardAppearanceAlert;
-    self.beatsPerMeasure.keyboardType = UIKeyboardTypeDecimalPad;
-    [self.beatsPerMeasure addTarget:self action:@selector(updateSegementedControlTitles) forControlEvents:UIControlEventEditingChanged];
-    self.beatsPerMeasure.borderStyle = UITextBorderStyleNone;
-    self.beatsPerMeasure.minimumFontSize = 10;
-    self.beatsPerMeasure.adjustsFontSizeToFitWidth = YES;
-    self.beatsPerMeasure.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    self.beatsPerMeasure.text = @"4";
+    UIImage *textFieldBG = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"textfieldbg" ofType:@"png"]];
+
+    self.beatsPerMeasure = [[[UITextField alloc]initWithFrame:iPad?CGRectMake(38, 73, 60, 60):CGRectMake(18, 26, 42, 42)]autorelease];
+    [_beatsPerMeasure addTarget:self action:@selector(updateSegementedControlTitles) forControlEvents:UIControlEventEditingChanged];
+    _beatsPerMeasure.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    _beatsPerMeasure.background = textFieldBG;
+    _beatsPerMeasure.textAlignment = UITextAlignmentCenter;
+    _beatsPerMeasure.clearsOnBeginEditing = YES;
+    _beatsPerMeasure.keyboardAppearance = UIKeyboardAppearanceAlert;
+    _beatsPerMeasure.keyboardType = UIKeyboardTypeDecimalPad;
+    _beatsPerMeasure.borderStyle = UITextBorderStyleNone;
+    _beatsPerMeasure.minimumFontSize = 10;
+    _beatsPerMeasure.adjustsFontSizeToFitWidth = YES;
+    _beatsPerMeasure.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _beatsPerMeasure.text = @"4";
+    _beatsPerMeasure.font = [UIFont boldSystemFontOfSize:iPad?38:21];
+    [self.view addSubview:_beatsPerMeasure];
+    [self.view bringSubviewToFront:_beatsPerMeasure];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.beatsPerMeasure.frame = CGRectMake(38, 73, 60, 60);
-        self.beatsPerMeasure.font = [UIFont boldSystemFontOfSize:38];
-    } else {
-        self.beatsPerMeasure.font = [UIFont boldSystemFontOfSize:21];
+    self.beatsPerMeasure2 = [[[UITextField alloc]initWithFrame:iPad?CGRectMake(139, 73, 60, 60):CGRectMake(82, 26, 42, 42)]autorelease];
+    [_beatsPerMeasure2 addTarget:self action:@selector(updateSegementedControlTitles) forControlEvents:UIControlEventEditingChanged];
+    _beatsPerMeasure2.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    _beatsPerMeasure2.background = textFieldBG;
+    _beatsPerMeasure2.textAlignment = UITextAlignmentCenter;
+    _beatsPerMeasure2.clearsOnBeginEditing = YES;
+    _beatsPerMeasure2.keyboardAppearance = UIKeyboardAppearanceAlert;
+    _beatsPerMeasure2.keyboardType = UIKeyboardTypeDecimalPad;
+    _beatsPerMeasure2.borderStyle = UITextBorderStyleNone;
+    _beatsPerMeasure2.minimumFontSize = 10;
+    _beatsPerMeasure2.adjustsFontSizeToFitWidth = YES;
+    _beatsPerMeasure2.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _beatsPerMeasure2.font = [UIFont boldSystemFontOfSize:iPad?38:21];
+    [self.view addSubview:_beatsPerMeasure2];
+    [self.view bringSubviewToFront:_beatsPerMeasure2];
+    
+    self.measures = [[[UILabel alloc]initWithFrame:iPad?CGRectMake(456, 4, 292, 36):CGRectMake(184, 6, 116, 36)]autorelease];
+    _measures.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    _measures.textColor = [UIColor colorWithRed:0.0f green:174.0f/255.0f blue:4.0f/255.0f alpha:1.0f];
+    _measures.font = [UIFont boldSystemFontOfSize:35];
+    _measures.textAlignment = UITextAlignmentLeft;
+    _measures.backgroundColor = [UIColor clearColor];
+    _measures.text = @"1";
+    [self.view addSubview:_measures];
+    [self.view bringSubviewToFront:_measures];
+
+    self.beatInMeasure = [[[UILabel alloc]initWithFrame:iPad?CGRectMake(456, 45, 292, 37):CGRectMake(242, 43, 66, 31)]autorelease];
+    _beatInMeasure.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    _beatInMeasure.textColor = [UIColor colorWithRed:0.0f green:174.0f/255.0f blue:4.0f/255.0f alpha:1.0f];
+    _beatInMeasure.font = [UIFont boldSystemFontOfSize:30];
+    _beatInMeasure.textAlignment = UITextAlignmentLeft;
+    _beatInMeasure.backgroundColor = [UIColor clearColor];
+    _beatInMeasure.text = @"1";
+    [self.view addSubview:_beatInMeasure];
+    [self.view bringSubviewToFront:_beatInMeasure];
+    
+    [_beatsPerMeasure setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"self.beatsPerMeasure.text"]];
+    [_beatsPerMeasure2 setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"self.beatsPerMeasure2.text"]];
+    
+    if (_beatsPerMeasure.text.length == 0) {
+        [_beatsPerMeasure setText:@"4"];
     }
     
-    [self.view addSubview:self.beatsPerMeasure];
-    [self.view bringSubviewToFront:self.beatsPerMeasure];
-    
-    UITextField *aSecondTextField = [[UITextField alloc]initWithFrame:CGRectMake(82, 26, 42, 42)];
-    [self setBeatsPerMeasure2:aSecondTextField];
-    [aSecondTextField release];
-    self.beatsPerMeasure2.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    [self.beatsPerMeasure2 setBackground:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"textfieldbg" ofType:@"png"]]];
-    self.beatsPerMeasure2.textAlignment = UITextAlignmentCenter;
-    self.beatsPerMeasure2.clearsOnBeginEditing = YES;
-    self.beatsPerMeasure2.keyboardAppearance = UIKeyboardAppearanceAlert;
-    self.beatsPerMeasure2.keyboardType = UIKeyboardTypeDecimalPad;
-    [self.beatsPerMeasure2 addTarget:self action:@selector(updateSegementedControlTitles) forControlEvents:UIControlEventEditingChanged];
-    self.beatsPerMeasure2.borderStyle = UITextBorderStyleNone;
-    self.beatsPerMeasure2.minimumFontSize = 10;
-    self.beatsPerMeasure2.adjustsFontSizeToFitWidth = YES;
-    self.beatsPerMeasure2.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.beatsPerMeasure2.frame = CGRectMake(139, 73, 60, 60);
-        self.beatsPerMeasure2.font = [UIFont boldSystemFontOfSize:38];
-    } else {
-        self.beatsPerMeasure2.font = [UIFont boldSystemFontOfSize:21];
+    if (_beatsPerMeasure2.text.length == 0) {
+        [_beatsPerMeasure2 setText:@"3"];
     }
     
-    [self.view addSubview:self.beatsPerMeasure2];
-    [self.view bringSubviewToFront:self.beatsPerMeasure2];
+    UIImage *divider = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"divider" ofType:@"png"]];
     
-    UILabel *aMeasures = [[UILabel alloc]initWithFrame:CGRectMake(184, 6, 116, 36)];
-    [self setMeasures:aMeasures];
-    [aMeasures release];
-    self.measures.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    self.measures.textColor = [UIColor colorWithRed:0.0f green:174.0f/255.0f blue:4.0f/255.0f alpha:1.0f];
-    self.measures.font = [UIFont boldSystemFontOfSize:35];
-    self.measures.textAlignment = UITextAlignmentLeft;
-    self.measures.backgroundColor = [UIColor clearColor];
-    [self.measures setText:@"1"];
+    self.sc = [[[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:_beatsPerMeasure.text, _beatsPerMeasure.text, nil]]autorelease];
+    _sc.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    _sc.segmentedControlStyle = UISegmentedControlStyleBordered;
+    _sc.frame = iPad?CGRectMake(20, 161, 204, 44):CGRectMake(10, 84, 134, 32);
+    [_sc setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"segmentedcontrolimage" ofType:@"png"]]  forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [_sc setDividerImage:divider forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [_sc setDividerImage:divider forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    _sc.selectedSegmentIndex = 0;
+    [_sc addTarget:self action:@selector(scSwitched) forControlEvents:UIControlEventValueChanged];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.measures.frame = CGRectMake(456, 4, 292, 36);
-    }
+    [self.view addSubview:_sc];
+    [self.view bringSubviewToFront:_sc];
     
-    [self.view addSubview:self.measures];
-    [self.view bringSubviewToFront:self.measures];
-    
-    UILabel *aBeatInMeasure = [[UILabel alloc]initWithFrame:CGRectMake(242, 43, 66, 31)];
-    [self setBeatInMeasure:aBeatInMeasure];
-    [aBeatInMeasure release];
-    self.beatInMeasure.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    self.beatInMeasure.textColor = [UIColor colorWithRed:0.0f green:174.0f/255.0f blue:4.0f/255.0f alpha:1.0f];
-    self.beatInMeasure.font = [UIFont boldSystemFontOfSize:30];
-    self.beatInMeasure.textAlignment = UITextAlignmentLeft;
-    self.beatInMeasure.backgroundColor = [UIColor clearColor];
-    [self.beatInMeasure setText:@""];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.beatInMeasure.frame = CGRectMake(456, 45, 292, 37);
-    }
-    
-    [self.view addSubview:self.beatInMeasure];
-    [self.view bringSubviewToFront:self.beatInMeasure];
-    
-    [self.beatsPerMeasure setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"self.beatsPerMeasure.text"]];
-    [self.beatsPerMeasure2 setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"self.beatsPerMeasure2.text"]];
-    
-    if (self.beatsPerMeasure.text.length == 0) {
-        [self.beatsPerMeasure setText:@"4"];
-    }
-    
-    if (self.beatsPerMeasure2.text.length == 0) {
-        [self.beatsPerMeasure2 setText:@"3"];
-    }
-    
-    UISegmentedControl *aSegmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:self.beatsPerMeasure.text, self.beatsPerMeasure.text, nil]];
-    [self setSc:aSegmentedControl];
-    [aSegmentedControl release];
-    self.sc.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    self.sc.segmentedControlStyle = UISegmentedControlStyleBordered;
-    self.sc.frame = CGRectMake(10, 84, 134, 32);
-    [self.sc setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"segmentedcontrolimage" ofType:@"png"]]  forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [self.sc setDividerImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"divider" ofType:@"png"]] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    [self.sc setDividerImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"divider" ofType:@"png"]] forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    self.sc.selectedSegmentIndex = 0;
-    [self.sc addTarget:self action:@selector(scSwitched) forControlEvents:UIControlEventValueChanged];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.sc.frame = CGRectMake(20, 161, 204, 44);
-    }
-    
-    [self.view addSubview:self.sc];
-    [self.view bringSubviewToFront:self.sc];
-    
-    tapped = NO;
     [self scSwitched];
 }
 
 - (void)updateTitles {
-    [self.sc setTitle:self.beatsPerMeasure.text forSegmentAtIndex:0];
-    [self.sc setTitle:self.beatsPerMeasure2.text forSegmentAtIndex:1];
+    [_sc setTitle:_beatsPerMeasure.text forSegmentAtIndex:0];
+    [_sc setTitle:_beatsPerMeasure2.text forSegmentAtIndex:1];
 }
 
 - (void)updateCurrentBPM {
-    if (self.sc.selectedSegmentIndex == 0) {
-        currentBPM = self.beatsPerMeasure.text.intValue;
-    } else if (self.sc.selectedSegmentIndex == 1) {
-        currentBPM = self.beatsPerMeasure2.text.intValue;
-    }
+    currentBPM = (_sc.selectedSegmentIndex == 0)?_beatsPerMeasure.text.intValue:_beatsPerMeasure2.text.intValue;
     
     if (currentBPM == 0) {
         currentBPM = 1;
@@ -289,8 +212,8 @@ BOOL timerIsValid(dispatch_source_t aTimer) {
 }
 
 - (void)resetIt {
-    [self.measures setText:@"1"];
-    [self.beatInMeasure setText:@""];
+    [_measures setText:@"1"];
+    [_beatInMeasure setText:@""];
     tapped = NO;
     
     if (timerIsValid(timer)) {
@@ -299,22 +222,19 @@ BOOL timerIsValid(dispatch_source_t aTimer) {
 }
 
 - (void)countBeat {
-    UILabel *bim = [self beatInMeasure];
-
-    int beatInMeasureV = bim.text.intValue;
+    int beatInMeasureV = _beatInMeasure.text.intValue;
     int finalValueY = beatInMeasureV+1;
     
     if (finalValueY > currentBPM) {
-        UILabel *mes = [self measures];
-        [bim setText:@"1"];
-        [mes setText:[NSString stringWithFormat:@"%d",(mes.text.intValue+(beatInMeasureV/currentBPM))]];
+        [_beatInMeasure setText:@"1"];
+        [_measures setText:[NSString stringWithFormat:@"%d",(_measures.text.intValue+(beatInMeasureV/currentBPM))]];
     } else {
-        [bim setText:[NSString stringWithFormat:@"%d",finalValueY]];
+        [_beatInMeasure setText:[NSString stringWithFormat:@"%d",finalValueY]];
     }
 }
 
 - (void)countRestButtonWasTapped {
-    if (self.autocount.on) {
+    if (_autocount.on) {
         if (!tapped) {
             firstTime = CACurrentMediaTime();
             tapped = YES;
@@ -333,14 +253,14 @@ BOOL timerIsValid(dispatch_source_t aTimer) {
 }
 
 - (void)updateSegementedControlTitles {
-    if ([self.beatsPerMeasure isFirstResponder]) {
-        [self.beatsPerMeasure resignFirstResponder];
-        [[NSUserDefaults standardUserDefaults]setObject:self.beatsPerMeasure.text forKey:@"self.beatsPerMeasure.text"];
+    if ([_beatsPerMeasure isFirstResponder]) {
+        [_beatsPerMeasure resignFirstResponder];
+        [[NSUserDefaults standardUserDefaults]setObject:_beatsPerMeasure.text forKey:@"self.beatsPerMeasure.text"];
     }
     
-    if ([self.beatsPerMeasure2 isFirstResponder]) {
-        [self.beatsPerMeasure2 resignFirstResponder];
-        [[NSUserDefaults standardUserDefaults]setObject:self.beatsPerMeasure2.text forKey:@"self.beatsPerMeasure2.text"];
+    if ([_beatsPerMeasure2 isFirstResponder]) {
+        [_beatsPerMeasure2 resignFirstResponder];
+        [[NSUserDefaults standardUserDefaults]setObject:_beatsPerMeasure2.text forKey:@"self.beatsPerMeasure2.text"];
     }
     
     [self updateTitles];
@@ -348,7 +268,7 @@ BOOL timerIsValid(dispatch_source_t aTimer) {
 }
 
 - (void)autocountToggled {
-    [[NSUserDefaults standardUserDefaults]setBool:self.autocount.on forKey:@"shouldAutocount"];
+    [[NSUserDefaults standardUserDefaults]setBool:_autocount.on forKey:@"shouldAutocount"];
     [self resetIt];
 }
 
