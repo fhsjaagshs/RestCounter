@@ -23,6 +23,7 @@
 		F1A438D313FDBFCD00D577BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A438D213FDBFCD00D577BB /* AppDelegate.m */; };
 		F1A438D913FDBFCD00D577BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A438D813FDBFCD00D577BB /* ViewController.m */; };
 		F1B3CA7C14BA60B8002E5000 /* rt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1B3CA7B14BA60B8002E5000 /* rt@2x.png */; };
+		F1DE1BC318516B4100604F0F /* FHSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DE1BC218516B4100604F0F /* FHSTimer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,8 @@
 		F1A438D713FDBFCD00D577BB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F1A438D813FDBFCD00D577BB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F1B3CA7B14BA60B8002E5000 /* rt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rt@2x.png"; path = "../rt@2x.png"; sourceTree = "<group>"; };
+		F1DE1BC118516B4100604F0F /* FHSTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTimer.h; sourceTree = "<group>"; };
+		F1DE1BC218516B4100604F0F /* FHSTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSTimer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				F1A438D213FDBFCD00D577BB /* AppDelegate.m */,
 				F1A438D713FDBFCD00D577BB /* ViewController.h */,
 				F1A438D813FDBFCD00D577BB /* ViewController.m */,
+				F1DE1BC118516B4100604F0F /* FHSTimer.h */,
+				F1DE1BC218516B4100604F0F /* FHSTimer.m */,
 				F1A438C913FDBFCD00D577BB /* Supporting Files */,
 			);
 			path = "Rest Counter";
@@ -211,6 +216,7 @@
 				F1A438CF13FDBFCD00D577BB /* main.m in Sources */,
 				F1A438D313FDBFCD00D577BB /* AppDelegate.m in Sources */,
 				F1A438D913FDBFCD00D577BB /* ViewController.m in Sources */,
+				F1DE1BC318516B4100604F0F /* FHSTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
